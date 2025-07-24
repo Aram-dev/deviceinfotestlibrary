@@ -88,6 +88,7 @@ dependencies {
 //}
 
 mavenPublishing {
+//    publishToMavenCentral(automaticRelease = true)
     coordinates(
         groupId = "com.example.deviceinfotestlibrary",
         artifactId = "deviceinfotestlibrary",
@@ -121,10 +122,38 @@ mavenPublishing {
     }
 }
 
+//signing {
+//    useGpgCmd()
+//    // Only sign if the 'release' property is set (e.g., -Prelease from command line)
+//    // AND all necessary signing properties are present.
+//    val isReleaseVersion = project.hasProperty("release")
+//    val allSigningPropertiesPresent = project.hasProperty("signing.keyId") &&
+//            project.hasProperty("signing.password") &&
+//            project.hasProperty("signing.secretKeyRingFile")
+//
+//    // Use a more robust check for whether signing should proceed
+//    isRequired = isReleaseVersion && allSigningPropertiesPresent
+//
+//    // If still using sign(publication) make sure it's within a conditional block
+//    // or the isRequired above handles it.
+//    if (isRequired) { // .get() if isRequired is a Provider
+//        sign(publishing.publications)
+//    }
+//}
+
 tasks.register("listComponents") {
     doLast {
         println("Available components:")
         components.forEach { println(it.name) }
     }
+}
+
+// Potentially problematic onlyIf
+tasks.withType<Sign>().configureEach {
+    onlyIf {
+        // This might be too simplistic if properties aren't always set
+        gradle.taskGraph.hasTask(":publishMavenPublicationToMavenRepository")
+    }
+    // If signing.keyId is not set here, the internal spec will fail
 }
 
