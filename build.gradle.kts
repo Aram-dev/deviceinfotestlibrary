@@ -3,7 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.maven.publish)
     alias(libs.plugins.gradle.signing)
-    id("com.vanniktech.maven.publish") version "0.34.0"
+//    id("com.vanniktech.maven.publish") version "0.34.0"
 }
 
 android {
@@ -35,13 +35,13 @@ android {
             resources.srcDirs("src/main/resources")
         }
     }
-//    publishing {
-//        singleVariant("release") {
-//            // If you want to include sources/javadoc jars, you can add:
-//            // withSourcesJar()
-//            // withJavadocJar()
-//        }
-//    }
+    publishing {
+        singleVariant("release") {
+            // If you want to include sources/javadoc jars, you can add:
+            // withSourcesJar()
+            // withJavadocJar()
+        }
+    }
 }
 
 dependencies {
@@ -53,74 +53,74 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
 }
 
-//publishing {
-//    publications {
-////        create<MavenPublication>("release") {
-////            // Configure publication after the project has been evaluated
-////            afterEvaluate {
-////                from(components.findByName("release"))
-////            }
-////            groupId = "com.example.deviceinfotestlibrary"
-////            artifactId = "deviceinfotestlibrary"
-////            version = "1.0.0"
-////        }
-//
-//        create<MavenPublication>("debug") {
+publishing {
+    publications {
+//        create<MavenPublication>("release") {
 //            // Configure publication after the project has been evaluated
 //            afterEvaluate {
-//                from(components.findByName("debug"))
+//                from(components.findByName("release"))
 //            }
 //            groupId = "com.example.deviceinfotestlibrary"
 //            artifactId = "deviceinfotestlibrary"
-//            version = "1.0.1"
+//            version = "1.0.0"
 //        }
-//    }
-//    repositories {
-//        maven {
-//            name = "GitHubPackages"
-//            url = uri("https://maven.pkg.github.com/Aram-dev/deviceinfotestlibrary")
-//            credentials {
-//                username = project.findProperty("gpr.user") as String? ?: System.getenv("GITHUB_USERNAME")
-//                password = project.findProperty("gpr.key") as String? ?: System.getenv("GITHUB_TOKEN")
-//            }
-//        }
-//    }
-//}
 
-mavenPublishing {
-//    publishToMavenCentral(automaticRelease = true)
-    coordinates(
-        groupId = "com.example.deviceinfotestlibrary",
-        artifactId = "deviceinfotestlibrary",
-        version = "1.0.0-SNAPSHOT"
-    )
-
-    pom {
-        name.set("Deviceinfo test library")
-        description.set("Collects some device-specific data.")
-        inceptionYear.set("2020")
-        url.set("https://github.com/Aram-dev/deviceinfotestlibrary/")
-        licenses {
-            license {
-                name.set("The Apache License, Version 2.0")
-                url.set("http://www.apache.org/licenses/LICENSE-2.0.txt")
-                distribution.set("http://www.apache.org/licenses/LICENSE-2.0.txt")
+        create<MavenPublication>("debug") {
+            // Configure publication after the project has been evaluated
+            afterEvaluate {
+                from(components.findByName("debug"))
             }
+            groupId = "com.example.deviceinfotestlibrary"
+            artifactId = "deviceinfotestlibrary"
+            version = "1.0.1"
         }
-        developers {
-            developer {
-                id.set("Aram-dev")
-                name.set("Aram Babujyan")
-                url.set("https://github.com/Aram-dev/")
+    }
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/Aram-dev/deviceinfotestlibrary")
+            credentials {
+                username = project.findProperty("gpr.user") as String? ?: System.getenv("GITHUB_USERNAME")
+                password = project.findProperty("gpr.key") as String? ?: System.getenv("GITHUB_TOKEN")
             }
-        }
-        scm {
-            url.set("https://github.com/Aram-dev/deviceinfotestlibrary/")
-            connection.set("scm:git:git://github.com/Aram-dev/deviceinfotestlibrary.git")
-            developerConnection.set("scm:git:ssh://git@github.com/Aram-dev/deviceinfotestlibrary.git")
         }
     }
 }
+
+//mavenPublishing {
+////    publishToMavenCentral(automaticRelease = true)
+//    coordinates(
+//        groupId = "com.example.deviceinfotestlibrary",
+//        artifactId = "deviceinfotestlibrary",
+//        version = "1.0.0-SNAPSHOT"
+//    )
+//
+//    pom {
+//        name.set("Deviceinfo test library")
+//        description.set("Collects some device-specific data.")
+//        inceptionYear.set("2025")
+//        url.set("https://github.com/Aram-dev/deviceinfotestlibrary/")
+//        licenses {
+//            license {
+//                name.set("The Apache License, Version 2.0")
+//                url.set("http://www.apache.org/licenses/LICENSE-2.0.txt")
+//                distribution.set("http://www.apache.org/licenses/LICENSE-2.0.txt")
+//            }
+//        }
+//        developers {
+//            developer {
+//                id.set("Aram-dev")
+//                name.set("Aram Babujyan")
+//                url.set("https://github.com/Aram-dev/")
+//            }
+//        }
+//        scm {
+//            url.set("https://github.com/Aram-dev/deviceinfotestlibrary/")
+//            connection.set("scm:git:git://github.com/Aram-dev/deviceinfotestlibrary.git")
+//            developerConnection.set("scm:git:ssh://git@github.com/Aram-dev/deviceinfotestlibrary.git")
+//        }
+//    }
+//}
 
 //signing {
 //    useGpgCmd()
@@ -148,7 +148,6 @@ tasks.register("listComponents") {
     }
 }
 
-// Potentially problematic onlyIf
 tasks.withType<Sign>().configureEach {
     onlyIf {
         // This might be too simplistic if properties aren't always set
