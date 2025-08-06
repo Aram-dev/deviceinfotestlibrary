@@ -1,12 +1,34 @@
 package com.example.deviceinfotest
 
+import android.annotation.SuppressLint
 import android.app.Activity
+import android.app.ActivityManager
+import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
+import android.hardware.Sensor
+import android.hardware.SensorManager
+import android.media.AudioManager
+import android.net.ConnectivityManager
+import android.os.BatteryManager
+import android.os.Build
+import android.os.Environment
+import android.os.StatFs
+import android.provider.Settings
+import android.telephony.TelephonyManager
 import android.util.Base64
+import android.util.DisplayMetrics
+import android.view.WindowManager
 import androidx.appcompat.app.AlertDialog
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import org.json.JSONObject
+import java.net.InetAddress
+import java.security.MessageDigest
+import java.util.Locale
+import java.util.TimeZone
 
 object DeviceInfoCollector {
 

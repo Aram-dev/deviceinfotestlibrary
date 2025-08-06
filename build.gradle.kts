@@ -25,18 +25,21 @@ android {
             )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
+
     sourceSets {
         getByName("main") {
             java.srcDirs("src/main/java")
             resources.srcDirs("src/main/resources")
         }
     }
+
     publishing {
-        singleVariant("release") {
+        singleVariant("debug") {
             // If you want to include sources/javadoc jars, you can add:
             // withSourcesJar()
             // withJavadocJar()
@@ -72,7 +75,7 @@ publishing {
             }
             groupId = "com.example.deviceinfotestlibrary"
             artifactId = "deviceinfotestlibrary"
-            version = "1.0.1"
+            version = "1.0.0"
         }
     }
     repositories {
@@ -148,11 +151,11 @@ tasks.register("listComponents") {
     }
 }
 
-tasks.withType<Sign>().configureEach {
-    onlyIf {
-        // This might be too simplistic if properties aren't always set
-        gradle.taskGraph.hasTask(":publishMavenPublicationToMavenRepository")
-    }
-    // If signing.keyId is not set here, the internal spec will fail
-}
+//tasks.withType<Sign>().configureEach {
+//    onlyIf {
+//        // This might be too simplistic if properties aren't always set
+//        gradle.taskGraph.hasTask(":publishMavenPublicationToMavenRepository")
+//    }
+//    // If signing.keyId is not set here, the internal spec will fail
+//}
 

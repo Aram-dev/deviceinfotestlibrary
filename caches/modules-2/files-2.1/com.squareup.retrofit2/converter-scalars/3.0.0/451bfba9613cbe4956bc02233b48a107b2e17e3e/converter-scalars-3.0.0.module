@@ -1,0 +1,98 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.squareup.retrofit2",
+    "module": "converter-scalars",
+    "version": "3.0.0",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "8.14"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 8,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api"
+      },
+      "dependencies": [
+        {
+          "group": "com.squareup.retrofit2",
+          "module": "retrofit",
+          "version": {
+            "requires": "3.0.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "converter-scalars-3.0.0.jar",
+          "url": "converter-scalars-3.0.0.jar",
+          "size": 11708,
+          "sha512": "e200a944457068fd1859bf60342e9d3ccf1a7b9561c5e807fa224ffe4d07312798aa53aaada0d71f8053dd551c30cfe05935093038b66f3f1d510f85f0d6969f",
+          "sha256": "b97cf06929a80d49bc632e44f219cf0a7185fc4cee861ec90ad1d0e482084023",
+          "sha1": "0377634bef7772e64298470ec27782de9eef0e70",
+          "md5": "467ab50c82f14d4d2715293033355fdc"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 8,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "com.squareup.retrofit2",
+          "module": "retrofit",
+          "version": {
+            "requires": "3.0.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "converter-scalars-3.0.0.jar",
+          "url": "converter-scalars-3.0.0.jar",
+          "size": 11708,
+          "sha512": "e200a944457068fd1859bf60342e9d3ccf1a7b9561c5e807fa224ffe4d07312798aa53aaada0d71f8053dd551c30cfe05935093038b66f3f1d510f85f0d6969f",
+          "sha256": "b97cf06929a80d49bc632e44f219cf0a7185fc4cee861ec90ad1d0e482084023",
+          "sha1": "0377634bef7772e64298470ec27782de9eef0e70",
+          "md5": "467ab50c82f14d4d2715293033355fdc"
+        }
+      ]
+    },
+    {
+      "name": "sourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "converter-scalars-3.0.0-sources.jar",
+          "url": "converter-scalars-3.0.0-sources.jar",
+          "size": 3989,
+          "sha512": "defbe1b4189c29444a6458224ba7359f510729c0117f6f7dc67bec2293bc2a2019956007b3da897ae08054fef7ada8db3dc85f53b67654018260436dad972925",
+          "sha256": "702c1734fc5b00a764dcea2e9c89f8d6d5069058a512fb0ebce56b04c58f2fa0",
+          "sha1": "a527eab3d081d7af5f9fb1deaf32904dfac6e152",
+          "md5": "27196bd4e2a8c6a19d8972200f427d54"
+        }
+      ]
+    }
+  ]
+}
