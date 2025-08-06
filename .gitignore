@@ -34,9 +34,11 @@ desktop.ini
 # Gradle
 # ========================
 .gradle/
+**/build/
 **/.gradle/
-buildSrc/.gradle/
 buildSrc/build/
+buildSrc/.gradle/
+!gradle/wrapper/gradle-wrapper.jar
 
 # Wrapper logs
 gradle-app.setting
@@ -48,8 +50,16 @@ gradle/
 # Android specific
 # ========================
 local.properties
+.cxx/
+.externalNativeBuild/
+captures/
 *.keystore
 *.jks
+
+# ========================
+# Ignore Gradle wrapper dists
+# ========================
+**/wrapper/dists/
 
 # Proguard
 proguard/*.txt
@@ -66,6 +76,8 @@ proguard/*.txt
 # ========================
 # Testing / Coverage
 # ========================
+**/test-results/
+**/test-output/
 /test-results/
 /coverage/
 /jacoco.exec
@@ -86,12 +98,20 @@ build/
 bin/
 gen/
 out/
+**/out/
 
 # KSP / KAPT / Annotation Processing
 .kapt/
 .ksp/
 **/build/tmp/
 **/build/generated/
+
+# ========================
+# Ignore intermediate Gradle state folders
+# ========================
+**/native/
+**/caches/
+**/daemon/
 
 # ========================
 # Other
