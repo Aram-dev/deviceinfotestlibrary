@@ -1,15 +1,112 @@
+# ========================
+# IDE / Editor Configs
+# ========================
+# IntelliJ / Android Studio
+.idea/
 *.iml
-.gradle
-/local.properties
-/.idea/caches
-/.idea/libraries
-/.idea/modules.xml
-/.idea/workspace.xml
-/.idea/navEditor.xml
-/.idea/assetWizardSettings.xml
+*.iws
+*.ipr
+
+# VS Code
+.vscode/
+
+# JetBrains IDE logs
+.idea/.ideaLog/
+
+# ========================
+# Build Artifacts & Caches
+# ========================
+/build/
+/.gradle/
+/.cxx/
+/.externalNativeBuild/
+/captures/
+/output/
+
+# ========================
+# OS-generated files
+# ========================
 .DS_Store
-/build
-/captures
-.externalNativeBuild
-.cxx
+Thumbs.db
+desktop.ini
+
+# ========================
+# Gradle
+# ========================
+.gradle/
+**/.gradle/
+buildSrc/.gradle/
+buildSrc/build/
+
+# Wrapper logs
+gradle-app.setting
+gradlew.bat
+gradlew
+gradle/
+
+# ========================
+# Android specific
+# ========================
 local.properties
+*.keystore
+*.jks
+
+# Proguard
+proguard/*.txt
+
+# ========================
+# Maven / Publishing
+# ========================
+*.jar
+*.aar
+*.pom
+*.m2/
+**/release/
+
+# ========================
+# Testing / Coverage
+# ========================
+/test-results/
+/coverage/
+/jacoco.exec
+*.ec
+
+# ========================
+# Logs & Temp
+# ========================
+*.log
+*.tmp
+*.swp
+*.lock
+
+# ========================
+# Generated files
+# ========================
+build/
+bin/
+gen/
+out/
+
+# KSP / KAPT / Annotation Processing
+.kapt/
+.ksp/
+**/build/tmp/
+**/build/generated/
+
+# ========================
+# Other
+# ========================
+*.bak
+*.orig
+*.rej
+*~
+
+
+# ========================
+# OPTIONAL: Keep specific .idea files if you work in team
+# Uncomment if you want to share run configurations or project setup
+# .idea/codeStyles/
+# .idea/runConfigurations/
+# .idea/inspectionProfiles/
+# .idea/misc.xml
+
