@@ -41,7 +41,7 @@ android {
     publishing {
         singleVariant("release") {
             withSourcesJar()
-            withJavadocJar()
+//            withJavadocJar()
         }
     }
 }
@@ -61,12 +61,25 @@ dependencies {
 publishing {
     publications {
         create<MavenPublication>("release") {
-            afterEvaluate {
-                from(components["release"])
+            // The groupId, artifactId, and version will be taken from
+            // the project properties or explicitly set here.
+            // AGP might also provide default values for these based on your variant.
+            // It's good practice to set them explicitly for clarity.
+
+            groupId = "com.example.deviceinfolib" // Or project.group.toString()
+            artifactId = "deviceinfolib"       // Or project.name
+            version = "1.0.0"                // Or project.version.toString()
+
+            // If you need to ensure this configuration happens after AGP has
+            // set up its components, you can use afterEvaluate, though it's
+            // often not necessary with `singleVariant`.
+            // Defer accessing components until after project evaluation
+            project.afterEvaluate {
+                from(components.findByName("release"))
+                // Or, if you know the component is definitely 'java' or 'web' (less likely for Android release)
+                // from(components.getByName("java"))
             }
-            groupId = "com.example.deviceinfotestlibrary"
-            artifactId = "deviceinfotestlibrary"
-            version = "1.0.0"
+
         }
     }
     repositories {
