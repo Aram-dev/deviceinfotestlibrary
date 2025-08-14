@@ -1,4 +1,4 @@
-package com.example.deviceinfotest
+package com.example.deviceinfolib
 
 import android.util.Log
 

@@ -7,7 +7,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.deviceinfotest"
+    namespace = "com.example.deviceinfolib"
     compileSdk = 36
 
     defaultConfig {
@@ -39,10 +39,9 @@ android {
     }
 
     publishing {
-        singleVariant("debug") {
-            // If you want to include sources/javadoc jars, you can add:
-            // withSourcesJar()
-            // withJavadocJar()
+        singleVariant("release") {
+            withSourcesJar()
+            withJavadocJar()
         }
     }
 }
@@ -50,6 +49,9 @@ android {
 dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
+    implementation(libs.material)
+    implementation(libs.biometric)
+    implementation(libs.security.crypto)
     testImplementation(libs.junit)
     androidTestImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
@@ -58,20 +60,9 @@ dependencies {
 
 publishing {
     publications {
-//        create<MavenPublication>("release") {
-//            // Configure publication after the project has been evaluated
-//            afterEvaluate {
-//                from(components.findByName("release"))
-//            }
-//            groupId = "com.example.deviceinfotestlibrary"
-//            artifactId = "deviceinfotestlibrary"
-//            version = "1.0.0"
-//        }
-
-        create<MavenPublication>("debug") {
-            // Configure publication after the project has been evaluated
+        create<MavenPublication>("release") {
             afterEvaluate {
-                from(components.findByName("debug"))
+                from(components["release"])
             }
             groupId = "com.example.deviceinfotestlibrary"
             artifactId = "deviceinfotestlibrary"
@@ -83,8 +74,10 @@ publishing {
             name = "GitHubPackages"
             url = uri("https://maven.pkg.github.com/Aram-dev/deviceinfotestlibrary")
             credentials {
-                username = project.findProperty("gpr.user") as String? ?: System.getenv("GITHUB_USERNAME")
-                password = project.findProperty("gpr.key") as String? ?: System.getenv("GITHUB_TOKEN")
+                username =
+                    project.findProperty("gpr.user") as String? ?: System.getenv("GITHUB_USERNAME")
+                password =
+                    project.findProperty("gpr.key") as String? ?: System.getenv("GITHUB_TOKEN")
             }
         }
     }

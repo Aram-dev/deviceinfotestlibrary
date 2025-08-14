@@ -1,6 +1,7 @@
-package com.example.deviceinfotest
+package com.example.deviceinfolib
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
@@ -10,27 +11,23 @@ import androidx.core.content.ContextCompat
 
 object PermissionHelper {
     const val PERMISSION_REQUEST_CODE = 2025
-    val PERMISSIONS = mapOf(
-        "android.permission.CAMERA" to "Camera",
-        "android.permission.READ_EXTERNAL_STORAGE" to "Storage"
-    )
+    val PERMISSIONS = mapOf("android.permission.ACCESS_FINE_LOCATION" to "Location")
 
     interface PermissionResultListener {
         fun onResult(granted: Boolean, denied: List<String>, permanentlyDenied: List<String>)
     }
 
     private var listener: PermissionResultListener? = null
-    private var requestedPermissions: List<String>? = null
+    private var requestedPermissions: Array<String> = arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION)
 
     // Call to request any set of permissions
     fun requestPermissions(
         activity: Activity,
-        permissions: Array<String>,
+        permissions: Array<String>?,
         cb: PermissionResultListener
     ) {
         listener = cb
-        requestedPermissions = permissions.toList()
-        ActivityCompat.requestPermissions(activity, permissions, PERMISSION_REQUEST_CODE)
+        ActivityCompat.requestPermissions(activity, permissions ?: requestedPermissions, PERMISSION_REQUEST_CODE)
     }
 
     // Checks the status of each permission in the array
@@ -84,7 +81,6 @@ object PermissionHelper {
             }
             listener?.onResult(denied.isEmpty(), denied, permanentlyDenied)
             listener = null
-            requestedPermissions = null
         }
     }
 
@@ -105,4 +101,7 @@ object PermissionHelper {
                 ) { PERMISSIONS[it].toString() })
         return permissionsString.toString()
     }
+
+    fun has(ctx: Context, permission: String) =
+        ContextCompat.checkSelfPermission(ctx, permission) == PackageManager.PERMISSION_GRANTED
 }
